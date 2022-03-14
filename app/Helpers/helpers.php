@@ -51,21 +51,6 @@ if(!function_exists('csv_to_array')){
             $result[] = $data;
 
         return $result;
-        /*
-                2014-12-31,4,private,withdraw,1200.00,EUR
-                operation date in format Y-m-d
-                user's identification, number
-                user's type, one of private or business
-                operation type, one of deposit or withdraw
-                operation amount (for example 2.12 or 3)
-                operation currency, one of EUR, USD, JPY
-                $result["date"] = $data[0];
-          $result["user_id"] = $data[];
-          $result["user_type"] = $data[];
-          $result["operation_type"] = $data[];
-          $result["amount"] = $data[];
-          $result["currency"] = $data[];
-        */
 
     }
 }
@@ -77,9 +62,6 @@ if(!function_exists('get_json_decode_URL')){
     function get_json_decode_URL($url)
     {
         $content = file_get_contents($url);
-
-        //TODO CHECK
-        //$result = json_decode($content);
         $result = json_decode($content, true);
 
         if (json_last_error() !== JSON_ERROR_NONE)  // OR json_last_error() !== 0
@@ -170,14 +152,17 @@ if (!function_exists('getLastDayOfWeek')) {
     }
 
     if (!function_exists('currencyConvertByURL')) {
+        /**
+         * @throws Exception
+         */
         function currencyConvertByURL($amount, $currency, $reverse = 0): float
-    {
-        //get_json_decode_URL is own helper function
-        $exchange = get_json_decode_URL(config('constants.exchange_url'));
+        {
+            //get_json_decode_URL is own helper function
+            $exchange = get_json_decode_URL(config('constants.exchange_url'));
 
-        $rateBaseElement = config('constants.rate_element');
-        $rate = $exchange[$rateBaseElement][$currency];
-        return $reverse ? (float)$amount * $rate : (float)$amount / $rate;
+            $rateBaseElement = config('constants.rate_element');
+            $rate = $exchange[$rateBaseElement][$currency];
+            return $reverse ? (float)$amount * $rate : (float)$amount / $rate;
+        }
     }
-}
 }

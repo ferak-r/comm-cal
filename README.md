@@ -1,7 +1,7 @@
 ## Author
 - Fereshte Rahim
 
-##Project Description
+##Description
 This project allows private and business clients to deposit and withdraw funds to and from accounts in multiple currencies. Clients may be charged a commission fee.
 
 You have to create an application that handles operations provided in CSV format and calculates a commission fee based on defined rules.
@@ -27,5 +27,8 @@ No need.🙃
 ## 5.Generate App key
 - run $`php artisan key:generate`
 
-## Module Installed: 
+## 6. Module Installed:
 No need.🙃
+
+## 7. How to run
+Root path
