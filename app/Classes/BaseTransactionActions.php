@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use JetBrains\PhpStorm\ArrayShape;
 use PHPUnit\Framework\Exception;
 
 class BaseTransactionActions
@@ -38,7 +39,8 @@ class BaseTransactionActions
         return true;
     }
 
-    public function chooseRule(&$inputs, $key):array
+    #[ArrayShape(['withComm' => "mixed", 'withoutComm' => "mixed", 'percent' => "mixed"])]
+    public function chooseRule($inputs, $key):array
     {
         $operation_type = $inputs[$key]['operation_type'];
         $amount = $inputs[$key]['amount'];

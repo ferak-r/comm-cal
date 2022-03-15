@@ -28,7 +28,10 @@ No need.🙃
 - run $`php artisan key:generate`
 
 ## 6. Module Installed:
-No need.🙃
+PHPUnit 🙃
+How to run test For ease development and debugging:
+
+php artisan test
 
 ## 7. How to run
 php artisan serve
@@ -50,3 +53,11 @@ in Root path project will run.
 88.5
 8997
 1
+
+<a id="about-you"></a>
+## About you
+
+* **First name:** Fereshte
+* **Last name:** Rahim
+* **Find me in Linkedin** https://www.linkedin.com/in/fereshte-rahim/
+* **My Main Github** I can't access it.
