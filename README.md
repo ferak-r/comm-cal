@@ -31,4 +31,22 @@ No need.🙃
 No need.🙃
 
 ## 7. How to run
-Root path
+php artisan serve
+in Root path project will run.
+
+## Preview result with this input
+
+0.6
+3.6
+3.6
+0.06
+1.5
+87.01
+90.6
+77.55
+0
+3
+0
+88.5
+8997
+1

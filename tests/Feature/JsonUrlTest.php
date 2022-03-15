@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class JsonUrlTest extends TestCase
@@ -13,7 +11,9 @@ class JsonUrlTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+
+    //todo I have no time for write enterprise phpunit or other automation test
+    public function tes_json_url()
     {
         $response = $this->get('/import');
 

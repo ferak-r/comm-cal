@@ -18,8 +18,12 @@ class BaseTransactionActions
             $commissionWithoutRoundConvert = $strategy->calculate();
 
             if($inputs['currency'] == "EUR") {
-                $fee['withComm'] = currencyConvertByURL($fee['withComm'], $inputs['currency'], -1);
-                $fee['withoutComm'] = currencyConvertByURL($fee['withoutComm'], $inputs['currency'], -1);
+                try {
+                    $fee['withComm'] = currencyConvertByURL($fee['withComm'], $inputs['currency'], -1);
+                    $fee['withoutComm'] = currencyConvertByURL($fee['withoutComm'], $inputs['currency'], -1);
+                } catch (\Exception $e) {
+                    throw new Exception($e);
+                }
             }
 
             $inputArray[$key]["withoutComm"] = $fee['withoutComm'];
@@ -27,26 +31,32 @@ class BaseTransactionActions
             $inputArray[$key]["percent"] = $fee['percent'];
             $inputArray[$key]["base_commission"] = $commissionWithoutRoundConvert;
             $results[$key] = $inputArray[$key]["commission"] = roundUp($commissionWithoutRoundConvert);
-
+            $results[$key] = $inputArray[$key]["commission"] = roundUp($commissionWithoutRoundConvert);
         }
         foreach ($results as $result)
             echo $result."<br/>";
         return true;
     }
 
-    /**
-     * @throws \Exception
-     */
     public function chooseRule(&$inputs, $key):array
     {
         $operation_type = $inputs[$key]['operation_type'];
         $amount = $inputs[$key]['amount'];
         $user_type = $inputs[$key]['user_type'];
-        $currency = $inputs[$key]['currency'];
 
-        $inputs[$key]['EurCurrency'] = ($currency == "EUR") ?  $amount
-            : currencyConvertByURL($amount, $currency);
+        $res = $this->initialize($user_type, $operation_type,$inputs, $key);
+        $amountWithoutCommission = $res[0];
+        $percent = $res[1];
 
+        return array(
+            'withComm' => $amount - $amountWithoutCommission,
+            'withoutComm' => $amountWithoutCommission,
+            'percent' => $percent
+        );
+    }
+
+    public function initialize($user_type, $operation_type, $inputs, $key):array
+    {
         switch ([$user_type, $operation_type]){
             case ['business', 'deposit']:
                 $withoutComm = new Rules(new BusinessClient($inputs, $key));
@@ -71,12 +81,7 @@ class BaseTransactionActions
             default:
                 throw new Exception("Input type is not valid!");
         }
-
-        return array(
-            'withComm' => $amount - $amountWithoutCommission,
-            'withoutComm' => $amountWithoutCommission,
-            'percent' => $percent
-        );
+        return array($amountWithoutCommission, $percent);
     }
 
     public function getInput():array

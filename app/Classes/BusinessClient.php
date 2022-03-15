@@ -9,7 +9,7 @@ class BusinessClient implements Ruleable
     private array $inputs;
     private int $key;
 
-    public function __construct($inputs,$key)
+    public function __construct($inputs, $key)
     {
         $this->inputs = $inputs;
         $this->key = $key;
