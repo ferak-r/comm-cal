@@ -45,18 +45,17 @@ class PrivateClient implements Ruleable
                 && $currentDate >= $input['date']
                 && $sum < 1000
             ) {
-                $otherTransactionBeforeTodayInWeek = ($currency == "EUR")
+                $currencyEuro1000 = ($currency == "EUR")
                     ?  $input['amount']
-                    : currencyConvertByURL($input['amount'], $currency);
-
-                $sum += $otherTransactionBeforeTodayInWeek;
+                    : currencyConvertByURL(1000 , $currency);
+                $sum += $input['amount'];
                 $countThisWeek++;
             }
         }
 //
 //        dd($sum,$amount,1000-$sum);//0 1200 1000
-        if ($sum >= 0  & ((1000 - $sum) < $amount))
-            return 1000 - $sum;
+        if ($sum >= 0  & (($currencyEuro1000 - $sum) < $amount))
+            return $currencyEuro1000 - $sum;
         else
             return $amount;
     }

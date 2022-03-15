@@ -18,15 +18,6 @@ class BaseTransactionActions
             $strategy = new Commission($fee['withComm'],$fee['percent']);
             $commissionWithoutRoundConvert = $strategy->calculate();
 
-            if($inputs['currency'] == "EUR") {
-                try {
-                    $fee['withComm'] = currencyConvertByURL($fee['withComm'], $inputs['currency'], -1);
-                    $fee['withoutComm'] = currencyConvertByURL($fee['withoutComm'], $inputs['currency'], -1);
-                } catch (\Exception $e) {
-                    throw new Exception($e);
-                }
-            }
-
             $inputArray[$key]["withoutComm"] = $fee['withoutComm'];
             $inputArray[$key]["withComm"] = $fee['withComm'];
             $inputArray[$key]["percent"] = $fee['percent'];
