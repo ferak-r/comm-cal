@@ -28,7 +28,7 @@ class PrivateClient implements Ruleable
         $userId = $inputs[$key]['user_id'];
         $currentDate = $inputs[$key]['date'];
         $currency = $inputs[$key]['currency'];
-        $amount = (float)$inputs[$key]['amount'];
+        $amount = (float) $inputs[$key]['amount'];
 
         $firstDayOfWeek = getFirstDayOfWeek($currentDate);
         $lastDayOfWeek = getLastDayOfWeek($currentDate);
@@ -36,11 +36,10 @@ class PrivateClient implements Ruleable
         $sum = 0;
 
         $currencyEuro1000 = ($currency == "EUR")
-            ? (float) $inputs[$key]['amount']
-            : currencyConvertByURL(1000 , $currency);
+            ? 1000
+            : currencyConvertByURL(1000, $currency, -1);
 
-        
-        foreach($inputs as $k =>$input) {
+        foreach ($inputs as $k => $input) {
             if ($countThisWeek <= 3
                 && $input['user_id'] == $userId
                 // && $input['operation_type'] == "withdraw"
@@ -55,10 +54,23 @@ class PrivateClient implements Ruleable
             }
         }
 
-        if ($sum >= 0  & (($currencyEuro1000 - $sum) < $amount))
-            return $currencyEuro1000 - $sum;
-        else
-            return $amount;
+
+
+
+
+        $remainedCommissionFree = $currencyEuro1000 - $sum;
+
+
+        $remainedCommissionFree = $currencyEuro1000 - $sum;
+//dd(       $remainedCommissionFree ,$currencyEuro1000,$sum);
+        if ($sum >= 0  & $remainedCommissionFree >0 & $remainedCommissionFree > $amount )
+            $res= $remainedCommissionFree - $amount;
+        else if($remainedCommissionFree < $amount)
+            $res = $amount - $remainedCommissionFree;
+         else
+            $res= $amount;
+
+         return $res;
 
     }
 }

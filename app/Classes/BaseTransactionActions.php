@@ -54,23 +54,23 @@ class BaseTransactionActions
     {
         switch ([$user_type, $operation_type]){
             case ['business', 'deposit']:
-                $withoutComm = new Rules(new BusinessClient($inputs, $key));
-                $amountWithoutCommission = $withoutComm->depositWithoutCommission($inputs, $key);
+                $withoutComm = new BusinessClient($inputs, $key);
+                $amountWithoutCommission = $withoutComm->depositWithoutCommission();
                 $percent = config('constants.deposit_commission_percent');
                 break;
             case ['business', 'withdraw']:
-                $withoutComm = new Rules(new BusinessClient($inputs, $key));
-                $amountWithoutCommission = $withoutComm->withdrawWithoutCommission($inputs, $key);
+                $withoutComm = new BusinessClient($inputs, $key);
+                $amountWithoutCommission = $withoutComm->withdrawWithoutCommission();
                 $percent = config('constants.business_withdraw_commission_percent');
                 break;
             case ['private', 'deposit']:
-                $withoutComm = new Rules(new PrivateClient($inputs, $key));
-                $amountWithoutCommission = $withoutComm->depositWithoutCommission($inputs, $key);
+                $withoutComm = new PrivateClient($inputs, $key);
+                $amountWithoutCommission = $withoutComm->depositWithoutCommission();
                 $percent = config('constants.deposit_commission_percent');
                 break;
             case ['private', 'withdraw']:
-                $withoutComm = new Rules(new PrivateClient($inputs, $key));
-                $amountWithoutCommission = $withoutComm->withdrawWithoutCommission($inputs, $key);
+                $withoutComm = new PrivateClient($inputs, $key);
+                $amountWithoutCommission = $withoutComm->withdrawWithoutCommission();
                 $percent = config('constants.private_withdraw_commission_percent');
                 break;
             default:

@@ -15,7 +15,7 @@ class Commission
 
     public function calculate(): float
     {
-        return  $this->amountWithCommission * ($this->percent / 100);
+       return  $this->amountWithCommission * ($this->percent / 100);
     }
 
 }
