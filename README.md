@@ -34,37 +34,28 @@ How to run test For ease development and debugging:
 php artisan test
 
 ## 7. How to run
+If you wnat you can copy import.csv file in public folder.
+If you wnat you can all Exchange Curreny with current format can be changed in commanded URL.
 php artisan serve
 in Root path project will run.
+
+
 
 ## Preview result with this input
 
 0.6
-
 3
-
 3
-
 0.06
-
 1.5
-
 90
-
 3
-
 0.3
-
 0.3
-
 3
-
 3
-
 0.9
-
 8607.4
-
 1
 
 <a id="about-you"></a>
