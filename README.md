@@ -39,7 +39,7 @@ in Root path project will run.
 
 ## Preview result with this input
 
-3
+0.6
 3
 3
 0.06
@@ -51,6 +51,21 @@ in Root path project will run.
 3
 3
 0.9
+8607.4
+1
+
+3
+0
+0
+0.06
+1.5
+90
+0
+0
+0.3
+3
+0
+0
 392.61
 1
 

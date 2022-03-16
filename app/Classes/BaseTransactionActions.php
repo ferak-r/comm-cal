@@ -45,7 +45,6 @@ class BaseTransactionActions
         else
             $amountWithCommission = $amount;
         $percent = $res[1];
-
         return array(
             'withComm' => $amountWithCommission,
             'withoutComm' => $amountWithoutCommission,

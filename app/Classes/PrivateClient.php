@@ -53,16 +53,11 @@ class PrivateClient implements Ruleable
                 $countThisWeek++;
             }
         }
-
         $remainedCommissionFree = $currencyEuro1000 - $sum;
-        if ($sum >= 0  & $remainedCommissionFree >0 & $remainedCommissionFree > $amount )
-            $res= $remainedCommissionFree - $amount;
-        else if($sum >= 0 & $remainedCommissionFree >0 & $remainedCommissionFree < $amount)
-            $res = $amount - $remainedCommissionFree;
-         else
-            $res= $amount;
 
-         return $res;
-
+        if($remainedCommissionFree > 0)
+            return $remainedCommissionFree;
+        else
+            return 0;
     }
 }
