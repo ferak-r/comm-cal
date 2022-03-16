@@ -39,6 +39,7 @@ class PrivateClient implements Ruleable
             ? (float) $inputs[$key]['amount']
             : currencyConvertByURL(1000 , $currency);
 
+        
         foreach($inputs as $k =>$input) {
             if ($countThisWeek <= 3
                 && $input['user_id'] == $userId
@@ -53,7 +54,6 @@ class PrivateClient implements Ruleable
                 $countThisWeek++;
             }
         }
-
 
         if ($sum >= 0  & (($currencyEuro1000 - $sum) < $amount))
             return $currencyEuro1000 - $sum;
