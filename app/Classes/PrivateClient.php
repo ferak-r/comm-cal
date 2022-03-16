@@ -42,7 +42,7 @@ class PrivateClient implements Ruleable
         foreach ($inputs as $k => $input) {
             if ($countThisWeek <= 3
                 && $input['user_id'] == $userId
-                // && $input['operation_type'] == "withdraw"
+                && $input['operation_type'] == "withdraw"
                 && $k != $key
                 && $currentDate >= $firstDayOfWeek
                 && $currentDate <= $lastDayOfWeek
@@ -54,18 +54,10 @@ class PrivateClient implements Ruleable
             }
         }
 
-
-
-
-
         $remainedCommissionFree = $currencyEuro1000 - $sum;
-
-
-        $remainedCommissionFree = $currencyEuro1000 - $sum;
-//dd(       $remainedCommissionFree ,$currencyEuro1000,$sum);
         if ($sum >= 0  & $remainedCommissionFree >0 & $remainedCommissionFree > $amount )
             $res= $remainedCommissionFree - $amount;
-        else if($remainedCommissionFree < $amount)
+        else if($sum >= 0 & $remainedCommissionFree >0 & $remainedCommissionFree < $amount)
             $res = $amount - $remainedCommissionFree;
          else
             $res= $amount;

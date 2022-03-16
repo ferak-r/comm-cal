@@ -24,12 +24,12 @@ class BusinessClient implements Ruleable
     }
     */
 
-    public function depositWithoutCommission() : int
+    public function depositWithoutCommission() : float
     {
         return 0;
     }
 
-    public function withdrawWithoutCommission() : int
+    public function withdrawWithoutCommission() : float
     {
         return 0;
     }

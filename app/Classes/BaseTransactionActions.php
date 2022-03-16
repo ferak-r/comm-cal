@@ -15,6 +15,7 @@ class BaseTransactionActions
         foreach($inputArray as $key => $inputs){
 
             $fee = $this->chooseRule($inputArray, $key);
+
             $strategy = new Commission($fee['withComm'],$fee['percent']);
             $commissionWithoutRoundConvert = $strategy->calculate();
 
@@ -22,11 +23,9 @@ class BaseTransactionActions
             $inputArray[$key]["withComm"] = $fee['withComm'];
             $inputArray[$key]["percent"] = $fee['percent'];
             $inputArray[$key]["base_commission"] = $commissionWithoutRoundConvert;
-            $results[$key] = $inputArray[$key]["commission"] = roundUp($commissionWithoutRoundConvert);
-            $results[$key] = $inputArray[$key]["commission"] = roundUp($commissionWithoutRoundConvert);
-
+            $inputArray[$key]["commission"] = roundUp($commissionWithoutRoundConvert);
+            $results[$key]  = roundUp($commissionWithoutRoundConvert);
         }
-//        dd($inputArray);
         foreach ($results as $result)
             echo $result."<br/>";
         return true;
@@ -36,15 +35,19 @@ class BaseTransactionActions
     public function chooseRule($inputs, $key):array
     {
         $operation_type = $inputs[$key]['operation_type'];
-        $amount = $inputs[$key]['amount'];
+        $amount = (float)$inputs[$key]['amount'];
         $user_type = $inputs[$key]['user_type'];
 
         $res = $this->initialize($user_type, $operation_type,$inputs, $key);
         $amountWithoutCommission = $res[0];
+        if($amount - $amountWithoutCommission >=0)
+            $amountWithCommission = $amount - $amountWithoutCommission;
+        else
+            $amountWithCommission = $amount;
         $percent = $res[1];
 
         return array(
-            'withComm' => $amount - $amountWithoutCommission,
+            'withComm' => $amountWithCommission,
             'withoutComm' => $amountWithoutCommission,
             'percent' => $percent
         );
@@ -72,6 +75,7 @@ class BaseTransactionActions
                 $withoutComm = new PrivateClient($inputs, $key);
                 $amountWithoutCommission = $withoutComm->withdrawWithoutCommission();
                 $percent = config('constants.private_withdraw_commission_percent');
+
                 break;
             default:
                 throw new Exception("Input type is not valid!");
