@@ -39,19 +39,19 @@ in Root path project will run.
 
 ## Preview result with this input
 
-0.6
+0
 3.6
 3.6
 0.06
 1.5
-87.01
+90.58
 90.6
-77.55
+88.25
 0
 3
 0
-88.5
-8997
+90.6
+8999.98
 1
 
 <a id="about-you"></a>

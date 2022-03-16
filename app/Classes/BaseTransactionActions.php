@@ -24,7 +24,9 @@ class BaseTransactionActions
             $inputArray[$key]["base_commission"] = $commissionWithoutRoundConvert;
             $results[$key] = $inputArray[$key]["commission"] = roundUp($commissionWithoutRoundConvert);
             $results[$key] = $inputArray[$key]["commission"] = roundUp($commissionWithoutRoundConvert);
+
         }
+//        dd($inputArray);
         foreach ($results as $result)
             echo $result."<br/>";
         return true;
@@ -109,6 +111,7 @@ class BaseTransactionActions
                 $res[$everyLine][$elements[$key]] = $val;
             }
         }
+
         return $res;
     }
 }

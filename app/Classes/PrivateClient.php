@@ -35,6 +35,10 @@ class PrivateClient implements Ruleable
         $countThisWeek = 0;
         $sum = 0;
 
+        $currencyEuro1000 = ($currency == "EUR")
+            ? (float) $inputs[$key]['amount']
+            : currencyConvertByURL(1000 , $currency);
+
         foreach($inputs as $k =>$input) {
             if ($countThisWeek <= 3
                 && $input['user_id'] == $userId
@@ -43,21 +47,18 @@ class PrivateClient implements Ruleable
                 && $currentDate >= $firstDayOfWeek
                 && $currentDate <= $lastDayOfWeek
                 && $currentDate >= $input['date']
-                && $sum < 1000
+                && $sum < $currencyEuro1000
             ) {
-
                 $sum += $input['amount'];
                 $countThisWeek++;
             }
         }
-        $currencyEuro1000 = ($currency == "EUR")
-            ?  $inputs[$key]['amount']
-            : currencyConvertByURL(1000 , $currency);
+
 
         if ($sum >= 0  & (($currencyEuro1000 - $sum) < $amount))
             return $currencyEuro1000 - $sum;
         else
             return $amount;
-    }
 
+    }
 }

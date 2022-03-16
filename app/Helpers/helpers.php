@@ -102,6 +102,7 @@ if (!function_exists('getLastDayOfWeek')) {
 
             $rateBaseElement = config('constants.rate_element');
             $rate = $exchange[$rateBaseElement][$currency];
+
             return $reverse ? (float)$amount * $rate : (float)$amount / $rate;
         }
     }

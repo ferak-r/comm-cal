@@ -17,3 +17,4 @@ Route::get('/import', 'App\Classes\BaseTransactionActions@getInput');
 
 //Run project
 Route::get('/', 'App\Classes\BaseTransactionActions@getAction');
+//Route::get('/checkres', 'App\Classes\PrivateClient@checkres');
