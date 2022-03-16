@@ -40,7 +40,7 @@ class BaseTransactionActions
 
         $res = $this->initialize($user_type, $operation_type,$inputs, $key);
         $amountWithoutCommission = $res[0];
-        if($amount - $amountWithoutCommission >=0)
+        if($amount - $amountWithoutCommission > 0)
             $amountWithCommission = $amount - $amountWithoutCommission;
         else
             $amountWithCommission = $amount;
