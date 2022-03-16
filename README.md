@@ -1,7 +1,7 @@
 ## Author
 - Fereshte Rahim
 
-##Description
+## Description
 This project allows private and business clients to deposit and withdraw funds to and from accounts in multiple currencies. Clients may be charged a commission fee.
 
 You have to create an application that handles operations provided in CSV format and calculates a commission fee based on defined rules.
@@ -40,33 +40,31 @@ in Root path project will run.
 ## Preview result with this input
 
 0.6
-3
-3
-0.06
-1.5
-90
-3
-0.3
-0.3
-3
-3
-0.9
-8607.4
-1
 
 3
-0
-0
-0.06
-1.5
-90
-0
-0
-0.3
+
 3
-0
-0
-392.61
+
+0.06
+
+1.5
+
+90
+
+3
+
+0.3
+
+0.3
+
+3
+
+3
+
+0.9
+
+8607.4
+
 1
 
 <a id="about-you"></a>

@@ -7,7 +7,9 @@ use App\Contracts\Ruleable;
 class PrivateClient implements Ruleable
 {
     private array $inputs;
-    private int $key;
+    private int $key;	
+	public const FREE_COMMISSION = 1000;
+
 
     public function __construct($inputs,$key)
     {
@@ -35,9 +37,9 @@ class PrivateClient implements Ruleable
         $countThisWeek = 0;
         $sum = 0;
 
-        $currencyEuro1000 = ($currency == "EUR")
-            ? 1000
-            : currencyConvertByURL(1000, $currency, -1);
+        $amountFree = ($currency == "EUR")
+            ? self::FREE_COMMISSION
+            : currencyConvertByURL(self::FREE_COMMISSION, $currency, -1);
 
         foreach ($inputs as $k => $input) {
             if ($countThisWeek <= 3
@@ -47,13 +49,13 @@ class PrivateClient implements Ruleable
                 && $currentDate >= $firstDayOfWeek
                 && $currentDate <= $lastDayOfWeek
                 && $currentDate >= $input['date']
-                && $sum < $currencyEuro1000
+                && $sum < $amountFree
             ) {
                 $sum += $input['amount'];
                 $countThisWeek++;
             }
         }
-        $remainedCommissionFree = $currencyEuro1000 - $sum;
+        $remainedCommissionFree = $amountFree - $sum;
 
         if($remainedCommissionFree > 0)
             return $remainedCommissionFree;
