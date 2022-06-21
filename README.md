@@ -28,15 +28,13 @@ No need.🙃
 - run $`php artisan key:generate`
 
 ## 6. Module Installed:
-- PHPUnit 🙃
-- How to run test For ease development and debugging:
+- No Need 🙃
 
 ## 7. How to run
 - If you wnat you can copy import.csv file in public folder.
 - If you wnat you can all Exchange Curreny with current format can be changed in commanded URL.
 - php artisan serve
 - In Root path project will run.
-
 
 
 ## Preview result with this input
