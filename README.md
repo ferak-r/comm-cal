@@ -21,11 +21,11 @@ You have to create an application that handles operations provided in CSV format
 ## 3.Setup your environment variables in .env
 - run $`cp .env-sample .env`
 
-## 4.Migration/Seed 
-No need.🙃
-
-## 5.Generate App key
+## 4.Generate App key
 - run $`php artisan key:generate`
+
+## 5.Migration/Seed 
+No need.🙃
 
 ## 6. Module Installed:
 - No Need 🙃
@@ -60,4 +60,4 @@ No need.🙃
 * **First name:** Fereshte
 * **Last name:** Rahim
 * **Find me in Linkedin** https://www.linkedin.com/in/fereshte-rahim/
-* **My Main Github** I can't access it.
+* **My Main Github** I can't access it. :(
